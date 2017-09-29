@@ -1,0 +1,8 @@
+5 warehouses ny la, mi,houston,chicago
+	in each warehouse we will havve three items
+	so possibly make a struct for warehouse that the three item
+	
+	each item has a count that info is stored in a single record
+	possibly a struct for the three items
+
+	
