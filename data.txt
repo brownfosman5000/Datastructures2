@@ -2,14 +2,14 @@ Price 1 = $2.00 Price 2 = $7.00 Price 3 = $8.50
 
 s New_York 	23 	14 	1
 s Miami 	25 	25 	25 
-s Los_Angeles	40 	13 	17
+s Los_Angeles	40	13 	17
 s Houston	100	30	10
 s Chicago	42	23	19
-s New_York	0	0	0
+s New_York	0	0	15
 s Miami		13	17	21
 o Los_Angeles	15	10	15
 o New_York	12	24	8
-0 Houston	75	45	10
+o Houston	75	45	10
 o Chicago	20	15	15
 o New_York	15	0	0
 s Los_Angeles	10	20	10

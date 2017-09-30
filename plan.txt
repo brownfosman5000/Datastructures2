@@ -1,8 +1,13 @@
-5 warehouses ny la, mi,houston,chicago
-	in each warehouse we will havve three items
-	so possibly make a struct for warehouse that the three item
-	
-	each item has a count that info is stored in a single record
-	possibly a struct for the three items
+5 warehouses ny la, mi,houston,chicago - done
+	3 items in each 2 dimmensional array
+Get prices from first line get line and parse - done
 
-	
+Parse each item on a line- 
+	first is a char s or o call function appropiate
+
+Shipment Cards 
+	read in 
+	print outa
+Order Cards
+	read in 
+	print out`	
