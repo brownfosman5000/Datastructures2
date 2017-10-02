@@ -62,7 +62,7 @@ void readPrices(double prices[]){
 	}	
 	
 }
-
+//Go through each car
 void processCards(int warehouse[][3],double prices[]){
 	string shipmenttype,city,amount[NUMITEMS];
 	int cityindex;
@@ -116,7 +116,7 @@ void readInfo(string &city,string amount[],int &cityindex){
 
 
 void printInfo(string type,string city,string amount[]){
-	cout<<type<<"\t"<<city<<"\t\t\t";
+	cout<<type<<"\t"<<city<<"\t\t";
 	for(int i = 0;i<NUMITEMS;i++){
 		cout<<amount[i]<<'\t';	
 	}
@@ -138,14 +138,19 @@ void update(int warehouse[][NUMITEMS],bool shipment,string amount[],int cityinde
 		else if(!shipment){
 			//Get priceoforder 
 			priceoforder += prices[i] * stoi(amount[i]);
-			cout<<"PriceofOrder: "<<priceoforder<<"    "<<prices[i]<<"   "<<amount[i]<<endl;
+			//cout<<"PriceofOrder: "<<priceoforder<<"    "<<prices[i]<<"   "<<amount[i]<<endl;
+			
+			//If warehouse doesnt have enough of a certain item
 			if(stoi(amount[i]) > warehouse[cityindex][i]){
 				//Get amount needed
 				amountneeded = stoi(amount[i]) - warehouse[cityindex][i];
+				
+					
+				//If some place could fufill the order
 				if(searchAndShip(warehouse,i,amountneeded,cityindex)){
 					warehouse[cityindex][i] -= stoi(amount[i]);
 					extra = prices[i]*amountneeded * 0.10;
-					cout<<"Extra"<<extra<<endl;
+					//cout<<"Extra"<<extra<<endl;
 					priceoforder+=extra;
 				}
 			}
@@ -164,6 +169,7 @@ void printUpdatedInfo(int warehouse[][NUMITEMS],int cityindex,string city,double
 	for(int i = 0;i<3;i++){
 		cout<<warehouse[cityindex][i]<<'\t';
 	}
+	cout<<endl;
 	if(priceoforder)
 		cout<<"Price of Order: $"<<priceoforder;
 	cout<<endl;
@@ -173,6 +179,7 @@ void printUpdatedInfo(int warehouse[][NUMITEMS],int cityindex,string city,double
 
 bool searchAndShip(int warehouse[][3],int item,int amountneeded,int citylowinv){
 	int city,highest = warehouse[0][item];
+	string cities[5] = {"New_York","Los_Angeles","Miami","Houston","Chicago"};
 	for(int i = 1;i<NUMCITIES;i++){	
 		if (highest < warehouse[i][item]){				
 			highest = warehouse[i][item];
@@ -180,13 +187,18 @@ bool searchAndShip(int warehouse[][3],int item,int amountneeded,int citylowinv){
 		}
 	}	
 
-	warehouse[city][item]-=amountneeded;
-
 
 	//If we could find an inv higher than the amount needed
 	if(highest>amountneeded){
+		warehouse[city][item]-=amountneeded;
 		warehouse[citylowinv][item]+= amountneeded;
-		cout<<amountneeded<<" of item "<<item<<" shipped from "<<city<<" to citylowinv"<<endl; 	
+		cout<<amountneeded<<" of item "<<item<<" shipped from "<<cities[city]<<" to "<< cities[citylowinv]<<endl; 	
+		
+		//Print sender info
+		cout<<cities[city]<<"\t";
+		for(int i = 0;i<NUMITEMS;i++)
+			cout<<warehouse[city][i]<<"\t";
+		cout<<endl;
 		return true;
 	}
 	else{
